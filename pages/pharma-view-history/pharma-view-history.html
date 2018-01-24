@@ -1,0 +1,18 @@
+<!--
+  Generated template for the PharmaViewHistoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <h2 ion-text text-center color="primary">Visits History</h2>
+    <ion-item *ngFor="let item of posts" >
+        <h2>{{item.DEVICE_DTE}}</h2>
+        <p>{{ item.DOCTOR_NME }}</p>
+    </ion-item>  
+</ion-content>

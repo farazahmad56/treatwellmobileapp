@@ -1,0 +1,33 @@
+<ion-content padding>
+    <div ion-text text-center>
+        <img  alt="logo" height="70"   src="assets/imgs/treatwell.png" />
+    </div>
+    <h2 ion-text text-center color="secondary">Welcome to TreatWell</h2>
+    <p ion-text text-center color="primary">Please login to continue</p>
+    <form [formGroup]="login" (ngSubmit)="verifyLogin()">
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>User Name</ion-label>
+                <ion-input type="text" required formControlName="userName"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Password</ion-label>
+                <ion-input type="password" required formControlName="password"></ion-input>
+            </ion-item>
+            <button ion-button type="submit" [disabled]="!login.valid" block>Login</button>
+        </ion-list>
+    </form>
+    <ion-list no-lines>
+        <ion-item>
+            <button ion-button color="danger" outline block (click)="openSignupOptions()">New user? Sign up here</button>
+        </ion-item>
+        <ion-item>
+            <button ion-button color="secondary" outline block (click)="callHelLine()">For Information Call: 0320-0003511</button>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer>
+    <ion-navbar>
+        <ion-title align="center" >© TreatWell Services (Pvt) Ltd.</ion-title>
+    </ion-navbar>
+</ion-footer>

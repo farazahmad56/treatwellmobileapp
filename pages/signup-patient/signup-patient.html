@@ -1,0 +1,75 @@
+<!--
+  Generated template for the SignupPatientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <h2 ion-text text-center color="primary">Sign Up for Patient</h2>
+    <form [formGroup]="patient" (ngSubmit)="savePatientInfo()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Full Name</ion-label>
+                <ion-input type="text" required formControlName="patientName"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Contact No</ion-label>
+                <ion-input type="number" required formControlName="contactNo"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Date of Birth</ion-label>
+                <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" formControlName="dob"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Age</ion-label>
+                <ion-input type="number" formControlName="age"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Gender</ion-label>
+                <ion-select formControlName="gender">
+                    <ion-option value="M" selected="">Male</ion-option>
+                    <ion-option value="F" >Female</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Blood Group</ion-label>
+                <ion-select formControlName="bloodGroupId">
+                    <ion-option *ngFor="let post of bloodGroups" value="{{post.TW_BLOOD_GROUP_ID}}">{{post.TITLE}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Can Donate Blood</ion-label>
+                <ion-select formControlName="canDonateBlood">
+                    <ion-option value="N">No</ion-option>
+                    <ion-option value="Y">Yes</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Profession</ion-label>
+                <ion-input type="text" formControlName="profession"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Referred by</ion-label>
+                <ion-input type="text" formControlName="referredBy"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Residence City</ion-label>
+                <ion-select formControlName="cityId">
+                    <ion-option *ngFor="let post of cities" value="{{post.CITY_ID}}">{{post.CITY_NME}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <button ion-button type="submit" [disabled]="!patient.valid" block >Next&nbsp;&nbsp;&nbsp;
+                <ion-icon name="arrow-round-forward" item-start></ion-icon>
+            </button>
+        </ion-list>
+    </form>
+</ion-content>

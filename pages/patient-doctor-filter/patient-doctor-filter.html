@@ -1,0 +1,37 @@
+<!--
+  Generated template for the PatientDoctorFilterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title>Find Doctor</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <form [formGroup]="searchDoctor" (ngSubmit)="searchDoctors()">
+        <ion-item>
+            <ion-label>Preferred City</ion-label>
+            <ion-select #C (ionChange)='getArea(C.value)'  formControlName="cityId">
+                <ion-option *ngFor="let post of cities" value="{{post.CITY_ID}}">{{post.CITY_NME}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Specialty</ion-label>
+            <ion-select formControlName="specilityId">
+                <ion-option *ngFor="let post of specilities" value="{{post.TW_MEDICAL_SPECIALITY_ID}}">{{post.TITLE}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Area</ion-label>
+            <ion-select formControlName="areaId">
+                <ion-option value="">Any</ion-option>
+                <ion-option *ngFor="let post of area" value="{{post.CITY_AREA_ID}}">{{post.AREA_NME}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <button ion-button type="submit"  block>Search&nbsp;&nbsp;&nbsp;
+            <ion-icon name="search" item-end></ion-icon>
+        </button>
+    </form>
+</ion-content>

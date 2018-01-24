@@ -1,0 +1,60 @@
+<!--
+  Generated template for the PatientPrescriptionViewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <h2 ion-text text-center color="primary">Prescription Detail</h2>
+    <ion-card>
+        <ion-list>
+            <button ion-item>
+                <ion-icon name="calendar" item-start></ion-icon>
+                {{presc.PREPARED_DTE}}
+            </button>
+            <button ion-item>
+                <ion-icon name="medkit" item-start></ion-icon>
+                {{presc.DOCTOR_NME}}
+            </button>
+            <button ion-item>
+                <ion-icon name="navigate" item-start></ion-icon>
+                {{presc.CLINIC_NME}}
+            </button>
+        </ion-list>
+        <ion-card-header *ngIf="medicines?.length > 0">
+            <h1>Medicines</h1>
+        </ion-card-header>
+        <ion-list *ngIf="medicines?.length > 0">
+            <ion-item *ngFor="let post of medicines">
+                <ion-icon name="done-all" item-start></ion-icon>
+                <h2>{{post.MEDICINE_NME}}</h2>
+                <p>Frequency: {{post.FREQUENCY}}</p>
+                <p>Usage: {{post.DAYS}} Days</p>
+            </ion-item>
+        </ion-list>
+        <ion-card-header *ngIf="labTests?.length > 0">
+            <h1>Lab Tests</h1>
+        </ion-card-header>
+        <ion-list *ngIf="labTests?.length > 0">
+            <button ion-item *ngFor="let post of labTests">
+                    <ion-icon name="done-all" item-start></ion-icon>
+                {{post.LAB_TEST_NME}}
+            </button>
+        </ion-list>
+        <ion-card-header *ngIf="presc.REMARKS !== ''">
+            <h1>Doctor Remarks</h1>
+        </ion-card-header>
+        <ion-list *ngIf="presc.REMARKS !== ''">
+            <ion-item>
+                <p>
+                    {{presc.REMARKS}}
+                </p>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+</ion-content>

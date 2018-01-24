@@ -1,0 +1,71 @@
+<!--
+  Generated template for the DoctorSignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <h2 ion-text text-center color="primary">Sign Up for Doctor</h2>
+    <form [formGroup]="doctor" (ngSubmit)="saveDoctorInfo()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Full Name</ion-label>
+                <ion-input type="text" required formControlName="doctorName"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Contact No</ion-label>
+                <ion-input type="number" required formControlName="contactNo"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Login ID</ion-label>
+                <ion-input type="text" formControlName="loginId" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Total Experience</ion-label>
+                <ion-input type="number" formControlName="totalExp" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Specialty</ion-label>
+                <ion-select formControlName="specilityId">
+                    <ion-option *ngFor="let post of specilities" value="{{post.TW_MEDICAL_SPECIALITY_ID}}">{{post.TITLE}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Consultancy Fee</ion-label>
+                <ion-input type="number" formControlName="consultancyFee"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>City</ion-label>
+                <ion-select formControlName="cityId">
+                    <ion-option *ngFor="let post of cities" value="{{post.CITY_ID}}">{{post.CITY_NME}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Clinic Name</ion-label>
+                <ion-select required formControlName="clinicName">
+                    <ion-option *ngFor="let post of clinics" value="{{post.TW_CLINIC_ID}}">{{post.CLINIC_NME}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Available From</ion-label>
+                <ion-datetime displayFormat="HH:mm A" formControlName="openTime" pickerFormat="HH mm" [(ngModel)]="event.timeStarts"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>To</ion-label>
+                <ion-datetime displayFormat="HH:mm A" formControlName="closeTime" pickerFormat="HH mm" [(ngModel)]="event.timeEnds"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Max Appointment</ion-label>
+                <ion-input type="number" formControlName="maxAppointment"></ion-input>
+            </ion-item>
+            <button ion-button type="submit" [disabled]="!doctor.valid" block >Save&nbsp;&nbsp;&nbsp;
+                <ion-icon name="cloud-upload" item-end></ion-icon>
+            </button>
+        </ion-list>
+    </form>
+</ion-content>

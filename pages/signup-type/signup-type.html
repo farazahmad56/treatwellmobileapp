@@ -1,0 +1,36 @@
+<!--
+  Generated template for the SignupTypePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <h2 ion-text text-center color="primary">Sign Up for TreatWell</h2>
+    <ion-list>
+        <button ion-item (click)="openSignupForPatient()" >
+                <ion-icon name="person" item-start></ion-icon>
+            Signup as Patient
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </button>
+        <button ion-item (click)="openSignupForDoctor()" >
+                <ion-icon name="medkit" item-start></ion-icon>
+            Signup as Doctor
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </button>
+    </ion-list>
+    <ion-list no-lines>
+        <ion-item>
+            <button ion-button color="secondary" outline block (click)="callHelLine()">For Information Call: 0320-0003511</button>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer>
+    <ion-navbar>
+        <ion-title align="center" >© TreatWell Services (Pvt) Ltd.</ion-title>
+    </ion-navbar>
+</ion-footer>
