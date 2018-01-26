@@ -19,13 +19,15 @@ import {ToastController} from 'ionic-angular';
 })
 export class DoctorSignupPage {
     public event = {
-        timeStarts: '16:00',
+        timeStarts: '09:00',
         timeEnds: '21:00'
     }
     private doctor: FormGroup;
     cities: any;
     specilities: any;
     clinics: any;
+    area: any;
+    showNewClinic: boolean = false;
     constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder,
         public medicalServiceProvider: MedicalServiceProvider, public loadingCtrl: LoadingController,
         private toastCtrl: ToastController) {
@@ -52,7 +54,7 @@ export class DoctorSignupPage {
             err => {
                 console.log(err);
             });
-
+        this.getArea('3');
         this.doctor = this.formBuilder.group({
             doctorName: ['', Validators.required],
             contactNo: ['', Validators.required],
@@ -61,6 +63,8 @@ export class DoctorSignupPage {
             consultancyFee: ['1000', Validators.required],
             specilityId: ['10', Validators.required],
             cityId: ['3'],
+            areaId: [''],
+            newClinicName: [''],
             clinicName: [''],
             openTime: [''],
             closeTime: [''],
@@ -86,10 +90,12 @@ export class DoctorSignupPage {
         });
         loading.present();
         var obj = this.doctor.value;
+        console.log(obj);
         this.medicalServiceProvider.saveDoctor(obj)
             .subscribe(
             data => {
                 loading.dismiss();
+                console.log(data);
                 if (data.result === 'save_success') {
                     toast.present();
                 }
@@ -98,5 +104,23 @@ export class DoctorSignupPage {
                 console.log(err);
             });
     }
-
+    getArea(cityId: string) {
+        let loadingArea = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loadingArea.present();
+        this.medicalServiceProvider.getAreas(cityId)
+            .subscribe(
+            data => {loadingArea.dismiss(); this.area = data;},
+            err => {
+                console.log(err);
+            });
+    }
+    showClinicName(val: any) {
+        if (val === '-1') {
+            this.showNewClinic = true;
+        } else {
+            this.showNewClinic = false;
+        }
+    }
 }

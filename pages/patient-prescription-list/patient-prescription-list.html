@@ -6,11 +6,12 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+        <ion-title>
+            <h2 ion-text color="primary">Prescriptions</h2>
+        </ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h2 ion-text text-center color="primary">Prescriptions</h2>
     <ion-card  *ngIf="posts?.length == 0"><ion-card-content><p ion-text color="danger">No record available.</p></ion-card-content></ion-card>
     <ion-list>
         <ion-item *ngFor="let post of posts" (click)="viewDetail(post)">

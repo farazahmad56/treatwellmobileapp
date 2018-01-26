@@ -7,7 +7,7 @@
 <ion-header>
     <ion-navbar>
         <ion-navbar>
-            <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+            <ion-title><h2 ion-text color="primary">Doctor Home</h2></ion-title>
             <ion-buttons end>
                 <button ion-button icon-only (click)="logOutUser()">
                         <ion-icon name="log-out"></ion-icon>
@@ -17,7 +17,6 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h2 ion-text text-center color="primary">Doctor Home</h2>
     <ion-list>
         <ion-item (click)="openViewAppointments()">
             <ion-avatar item-start>
@@ -28,3 +27,8 @@
         </ion-item>
     </ion-list>
 </ion-content>
+<ion-footer>
+    <ion-navbar>
+        <ion-title align="center" >© TreatWell Services (Pvt) Ltd.</ion-title>
+    </ion-navbar>
+</ion-footer>

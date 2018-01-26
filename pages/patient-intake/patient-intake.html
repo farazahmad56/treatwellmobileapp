@@ -6,11 +6,10 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title>Intake Form</ion-title>
+        <ion-title><h2 ion-text color="primary">Intake Form</h2></ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h3>Please answer these questions.</h3>
     <form [formGroup]="inTakeForm" (ngSubmit)="savePatientIntake()">
         <ion-list >
             <ion-item>

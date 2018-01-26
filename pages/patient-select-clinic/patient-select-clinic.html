@@ -6,11 +6,10 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+        <ion-title><h2 ion-text color="primary">Step 2- Select Clinic</h2></ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h2 ion-text text-center color="primary">Step 2- Select Clinic</h2>
     <ion-list>
         <ion-item *ngFor="let post of clinics" (click)="selectClinic(post)">
             <h2><ion-icon name="square"></ion-icon>&nbsp;{{post.CLINIC_NME}} </h2>

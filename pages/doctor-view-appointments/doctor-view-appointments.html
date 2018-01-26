@@ -6,11 +6,16 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+        <ion-title><h2 ion-text color="primary">Today Appointments</h2></ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="logOutUser()">
+                    <ion-icon name="log-out"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h2 ion-text text-center color="primary">Today Appointments</h2>
+    <ion-card  *ngIf="dates?.length == 0"><ion-card-content><p ion-text color="danger">No appointment made for today.</p></ion-card-content></ion-card>
     <ion-card *ngFor="let post of dates">
         <ion-card-content>
             <ion-card-title>

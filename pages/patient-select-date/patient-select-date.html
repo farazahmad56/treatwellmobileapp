@@ -6,11 +6,10 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+        <ion-title><h2 ion-text color="primary">Step 3- Select Date</h2></ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h2 ion-text text-center color="primary">Step 3- Select Date</h2>
     <ion-list>
         <ion-item *ngFor="let post of appiontmentDates" (click)="selectTime(post)">
             {{post.DTE}}

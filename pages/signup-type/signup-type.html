@@ -6,22 +6,26 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+        <ion-title><h2 ion-text color="primary">Sign Up for TreatWell</h2></ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h2 ion-text text-center color="primary">Sign Up for TreatWell</h2>
+
     <ion-list>
-        <button ion-item (click)="openSignupForPatient()" >
-                <ion-icon name="person" item-start></ion-icon>
-            Signup as Patient
+        <ion-item (click)="openSignupForPatient()">
+            <ion-avatar item-start>
+                <img src="assets/imgs/icons8-account-96.png">
+            </ion-avatar>
+            <h2>Patient Sign up</h2>
             <ion-icon name="arrow-dropright" item-end></ion-icon>
-        </button>
-        <button ion-item (click)="openSignupForDoctor()" >
-                <ion-icon name="medkit" item-start></ion-icon>
-            Signup as Doctor
+        </ion-item>
+        <ion-item (click)="openSignupForDoctor()">
+            <ion-avatar item-start>
+                <img src="assets/imgs/icons8-doctor-male-96.png">
+            </ion-avatar>
+            <h2>Doctor Sign up</h2>
             <ion-icon name="arrow-dropright" item-end></ion-icon>
-        </button>
+        </ion-item>
     </ion-list>
     <ion-list no-lines>
         <ion-item>

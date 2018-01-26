@@ -6,11 +6,12 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+        <ion-title>
+            <h2 ion-text color="primary">Prescription Detail</h2>
+        </ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h2 ion-text text-center color="primary">Prescription Detail</h2>
     <ion-card>
         <ion-list>
             <button ion-item>
@@ -41,10 +42,12 @@
             <h1>Lab Tests</h1>
         </ion-card-header>
         <ion-list *ngIf="labTests?.length > 0">
-            <button ion-item *ngFor="let post of labTests">
-                    <ion-icon name="done-all" item-start></ion-icon>
-                {{post.LAB_TEST_NME}}
-            </button>
+            <ion-item *ngFor="let post of labTests">
+                <ion-icon name="done-all" item-start></ion-icon>
+                <h2>{{post.LAB_TEST_NME}}</h2>
+                <p>{{post.LAB_NME}}</p>
+                <p>{{post.CENTER_NME}}</p>
+            </ion-item>
         </ion-list>
         <ion-card-header *ngIf="presc.REMARKS !== ''">
             <h1>Doctor Remarks</h1>

@@ -6,11 +6,12 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+        <ion-title>
+            <h2 ion-text color="primary">Visits History</h2>
+        </ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h2 ion-text text-center color="primary">Visits History</h2>
     <ion-item *ngFor="let item of posts" >
         <h2>{{item.DEVICE_DTE}}</h2>
         <p>{{ item.DOCTOR_NME }}</p>

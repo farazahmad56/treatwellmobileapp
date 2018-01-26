@@ -6,11 +6,10 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+        <ion-title><h2 ion-text text-center color="primary">Sign Up for Doctor</h2></ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h2 ion-text text-center color="primary">Sign Up for Doctor</h2>
     <form [formGroup]="doctor" (ngSubmit)="saveDoctorInfo()">
         <ion-list>
             <ion-item>
@@ -40,15 +39,27 @@
                 <ion-input type="number" formControlName="consultancyFee"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>City</ion-label>
-                <ion-select formControlName="cityId">
+                <ion-label floating>Clinic</ion-label>
+                <ion-select #CL (ionChange)='showClinicName(CL.value)' required formControlName="clinicName" >
+                    <ion-option *ngFor="let post of clinics" value="{{post.TW_CLINIC_ID}}">{{post.CLINIC_NME}}</ion-option>
+                    <ion-option value="-1">Add New</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="showNewClinic">
+                <ion-label floating>Clinic Name</ion-label>
+                <ion-input type="text" formControlName="newClinicName"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="showNewClinic">
+                <ion-label>Clinic City</ion-label>
+                <ion-select #C (ionChange)='getArea(C.value)'  formControlName="cityId">
                     <ion-option *ngFor="let post of cities" value="{{post.CITY_ID}}">{{post.CITY_NME}}</ion-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
-                <ion-label floating>Clinic Name</ion-label>
-                <ion-select required formControlName="clinicName">
-                    <ion-option *ngFor="let post of clinics" value="{{post.TW_CLINIC_ID}}">{{post.CLINIC_NME}}</ion-option>
+            <ion-item *ngIf="showNewClinic">
+                <ion-label>Area</ion-label>
+                <ion-select formControlName="areaId">
+                    <ion-option value="">Select</ion-option>
+                    <ion-option *ngFor="let post of area" value="{{post.CITY_AREA_ID}}">{{post.AREA_NME}}</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>

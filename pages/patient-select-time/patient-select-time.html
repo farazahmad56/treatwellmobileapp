@@ -6,11 +6,12 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><img alt="logo" height="50"   src="assets/imgs/treatwell.png" /></ion-title>
+        <ion-title>
+            <h2 ion-text color="primary">Step 4- Select Time</h2>
+        </ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <h2 ion-text text-center color="primary">Step 4- Select Time</h2>
     <ion-list>
         <div  *ngFor="let post of appointmentTime">
             <button ion-item   *ngIf="!post.isLocked;" (click)="confirmAppointment(post)">

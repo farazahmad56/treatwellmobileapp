@@ -105,6 +105,8 @@ export class MedicalServiceProvider {
         body.set('totalAppointments', doctor.maxAppointment);
         body.set('doctorType', '2');
         body.set('addedFrom', 'MOBILE');
+        body.set('clinicName', doctor.newClinicName);
+        body.set('areaId', doctor.areaId);
         let options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
