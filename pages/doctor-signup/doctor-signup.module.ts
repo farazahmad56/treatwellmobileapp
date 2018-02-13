@@ -9,6 +9,8 @@ import {DoctorSignupPage} from './doctor-signup';
     ],
     imports: [
         IonicPageModule.forChild(DoctorSignupPage),
-    ],
+    ], exports: [
+        DoctorSignupPage
+    ]
 })
 export class DoctorSignupPageModule {}

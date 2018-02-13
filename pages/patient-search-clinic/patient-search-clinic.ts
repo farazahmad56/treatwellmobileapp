@@ -3,7 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {LoadingController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
-import {PatientClinicResultPage} from '../../pages/patient-clinic-result/patient-clinic-result';
+import {PatientClinicResultPage} from '../../pages/pages';
 
 /**
  * Generated class for the PatientSearchClinicPage page.

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {LoadingController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
-import {PatientSelectDatePage} from '../../pages/patient-select-date/patient-select-date';
+import {PatientSelectDatePage} from '../../pages/pages';
 
 /**
  * Generated class for the PatientSelectClinicPage page.
@@ -21,10 +21,10 @@ export class PatientSelectClinicPage {
     private doctorId: string;
     private clinics: any;
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public medicalServiceProvider: MedicalServiceProvider,
-         public navParams: NavParams) {
+        public navParams: NavParams) {
         this.doctor = this.navParams.get('doctor');
         this.doctorId = this.doctor.TW_DOCTOR_ID;
-        
+
         let loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });
@@ -43,6 +43,6 @@ export class PatientSelectClinicPage {
             doctor: this.doctor
         });
     }
-  
+
 
 }

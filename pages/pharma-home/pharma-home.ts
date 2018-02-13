@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from '../../pages/home/home';
 import {Storage} from '@ionic/storage';
-import {PharmaDoctorSearchPage} from '../../pages/pharma-doctor-search/pharma-doctor-search';
-import {PharmaViewHistoryPage} from '../../pages/pharma-view-history/pharma-view-history';
+import {PharmaDoctorSearchPage} from '../../pages/pages';
+import {PharmaViewHistoryPage} from '../../pages/pages';
 
 /**
  * Generated class for the PharmaHomePage page.

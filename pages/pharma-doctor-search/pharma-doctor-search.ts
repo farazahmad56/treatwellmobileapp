@@ -4,7 +4,7 @@ import {MedicalServiceProvider} from '../../providers/medical-service/medical-se
 import {LoadingController, ToastController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {AlertController} from 'ionic-angular';
-import {PharmaHomePage} from '../../pages/pharma-home/pharma-home';
+import {PharmaHomePage} from '../../pages/pages';
 import {Geolocation} from '@ionic-native/geolocation';
 import {Device} from '@ionic-native/device';
 declare var moment: any;

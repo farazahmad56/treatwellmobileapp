@@ -1,17 +1,19 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, IonicPage} from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
-import {SignupTypePage} from '../../pages/signup-type/signup-type';
+import {SignupTypePage} from '../../pages/pages';
 import {LoadingController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {CallNumber} from '@ionic-native/call-number';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
-import {PatientHomePage} from '../../pages/patient-home/patient-home';
-import {DoctorHomePage} from '../../pages/doctor-home/doctor-home';
-import {PharmaHomePage} from '../../pages/pharma-home/pharma-home';
+import {PatientHomePage} from '../../pages/pages';
+import {DoctorHomePage} from '../../pages/pages';
+import {PharmaHomePage} from '../../pages/pages';
+import {ApplicationOverviewPage} from '../../pages/pages';
 import 'rxjs/add/operator/map';
 import {ToastController} from 'ionic-angular';
 declare var calcMD5: any;
+@IonicPage()
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
@@ -25,6 +27,11 @@ export class HomePage {
         this.login = this.formBuilder.group({
             userName: ['', Validators.required],
             password: ['', Validators.required],
+        });
+        this.storage.get('isNewUser').then((val) => {
+            if (val === null || val === 'N') {
+                this.navCtrl.setRoot(ApplicationOverviewPage);
+            }
         });
         this.storage.get('loggedInPatientId').then((val) => {
             if (val != null && val !== '') {

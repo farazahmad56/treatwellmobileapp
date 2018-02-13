@@ -3,7 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {LoadingController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
-import {PatientFindDoctorPage} from '../../pages/patient-find-doctor/patient-find-doctor';
+import {PatientFindDoctorPage} from '../../pages/pages';;
 /**
  * Generated class for the PatientDoctorFilterPage page.
  *
@@ -41,26 +41,26 @@ export class PatientDoctorFilterPage {
             err => {
                 console.log(err);
             });
-//        this.getArea('3');
+        //        this.getArea('3');
         this.searchDoctor = this.formBuilder.group({
             specilityId: ['10', Validators.required],
             cityId: ['3'],
             areaId: ['']
         });
-        
+
     }
-        getArea(cityId: string) {
-            let loadingArea = this.loadingCtrl.create({
-                content: 'Please wait...'
+    getArea(cityId: string) {
+        let loadingArea = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loadingArea.present();
+        this.medicalServiceProvider.getAreas(cityId)
+            .subscribe(
+            data => {loadingArea.dismiss(); this.area = data;},
+            err => {
+                console.log(err);
             });
-            loadingArea.present();
-            this.medicalServiceProvider.getAreas(cityId)
-                .subscribe(
-                data => {loadingArea.dismiss(); this.area = data;},
-                err => {
-                    console.log(err);
-                });
-        }
+    }
     searchDoctors() {
         var obj = this.searchDoctor.value;
         this.navCtrl.push(PatientFindDoctorPage, {

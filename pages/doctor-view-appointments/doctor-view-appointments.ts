@@ -67,9 +67,61 @@ export class DoctorViewAppointmentsPage {
                                 if (data.result === 'save_success') {
                                     toast.present();
                                     //
-                                    this.storage.get('loggedInPatientId').then((val) => {
+                                    this.storage.get('loggedInDoctorId').then((val) => {
                                         if (val !== '') {
-                                            this.medicalServiceProvider.getPatientAppointments(val)
+                                            this.medicalServiceProvider.getDoctorAppointments(val)
+                                                .subscribe(
+                                                data => {loading.dismiss(); this.dates = data;},
+                                                err => {
+                                                    console.log(err);
+                                                });
+                                        }
+                                    });
+                                    //
+                                }
+                            },
+                            err => {
+                                console.log(err);
+                            });
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    }
+    approveAppointment(appointment: any) {
+        let toast = this.toastCtrl.create({
+            message: 'Your appointment confirmed successfully.',
+            duration: 3000,
+            position: 'middle',
+            showCloseButton: true,
+            closeButtonText: 'Ok'
+        });
+        let loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        let confirm = this.alertCtrl.create({
+            title: 'Confirm Appointment?',
+            message: 'Do you want to confirm appointment?',
+            buttons: [
+                {
+                    text: 'No',
+                    handler: () => {
+                        console.log('Disagree clicked');
+                    }
+                },
+                {
+                    text: 'Yes',
+                    handler: () => {
+                        loading.present();
+                        this.medicalServiceProvider.confirmAppointment(appointment.TW_APPOINTMENT_ID).subscribe(
+                            data => {
+                                if (data.result === 'save_success') {
+                                    toast.present();
+                                    //
+                                    this.storage.get('loggedInDoctorId').then((val) => {
+                                        if (val !== '') {
+                                            this.medicalServiceProvider.getDoctorAppointments(val)
                                                 .subscribe(
                                                 data => {loading.dismiss(); this.dates = data;},
                                                 err => {

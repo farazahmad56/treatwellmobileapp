@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {PatientDoctorFilterPage} from '../../pages/patient-doctor-filter/patient-doctor-filter';
-import {PatientAppointmentsPage} from '../../pages/patient-appointments/patient-appointments';
-import {PatientAttachmentPage} from '../../pages/patient-attachment/patient-attachment';
-import {ViewFavDoctorsPage} from '../../pages/view-fav-doctors/view-fav-doctors';
-import {PatientPrescriptionListPage} from '../../pages/patient-prescription-list/patient-prescription-list';
-import {PatientSearchClinicPage} from '../../pages/patient-search-clinic/patient-search-clinic';
-import {ChangePasswordPage} from '../../pages/change-password/change-password';
-import {HomePage} from '../../pages/home/home';
+import {PatientDoctorFilterPage} from '../../pages/pages';
+import {PatientAppointmentsPage} from '../../pages/pages';
+import {PatientAttachmentPage} from '../../pages/pages';
+import {ViewFavDoctorsPage} from '../../pages/pages';
+import {PatientPrescriptionListPage} from '../../pages/pages';
+import {PatientSearchClinicPage} from '../../pages/pages';
+import {ChangePasswordPage} from '../../pages/pages';
+import {HomePage} from '../../pages/pages';
 import {Storage} from '@ionic/storage';
 /**
  * Generated class for the PatientHomePage page.

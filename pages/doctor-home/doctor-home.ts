@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {DoctorViewAppointmentsPage} from '../../pages/doctor-view-appointments/doctor-view-appointments';
+import {DoctorViewAppointmentsPage} from '../../pages/pages';;
 import {HomePage} from '../../pages/home/home';
 import {Storage} from '@ionic/storage';
 import {LoadingController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
+import {DoctorSelectPatientPage} from '../../pages/pages';;
 /**
  * Generated class for the DoctorHomePage page.
  *
@@ -43,5 +44,8 @@ export class DoctorHomePage {
     logOutUser() {
         this.storage.remove('loggedInDoctorId');
         this.navCtrl.setRoot(HomePage);
+    }
+    openAddPrescription() {
+        this.navCtrl.push(DoctorSelectPatientPage);
     }
 }

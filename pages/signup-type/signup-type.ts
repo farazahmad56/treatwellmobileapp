@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {CallNumber} from '@ionic-native/call-number';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {SignupPatientPage} from '../../pages/signup-patient/signup-patient';
-import {DoctorSignupPage} from '../../pages/doctor-signup/doctor-signup';
+import {SignupPatientPage} from '../../pages/pages';
+import {DoctorSignupPage} from '../../pages/pages';
 /**
  * Generated class for the SignupTypePage page.
  *

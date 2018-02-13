@@ -3,7 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {LoadingController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
-import {HomePage} from '../../pages/home/home';
+import {HomePage} from '../../pages/pages';;
 import {ToastController} from 'ionic-angular';
 /**
  * Generated class for the DoctorSignupPage page.

@@ -1,0 +1,67 @@
+<!--
+  Generated template for the DoctorAddPrescriptionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title><h2 ion-text color="primary">Add Medicine/Test</h2></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <h3>Patient Name: {{patient.PATIENT_NME}}</h3>
+        </ion-item>
+        <ion-item>
+            <h3>Contact No.: {{patient.MOBILE_NO}}</h3>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Remarks</ion-label>
+            <ion-textarea [(ngModel)]="prescription.doctorRemarks" [ngModelOptions]="{standalone: true}"></ion-textarea>
+        </ion-item>
+    </ion-list>
+
+    <ion-card>
+        <ion-card-header >
+            Medicines
+        </ion-card-header>
+        <ion-card-content>
+            <button ion-button color="primary" outline (click)="medicineModal()">
+                    <ion-icon name="add-circle"></ion-icon>&nbsp;Medicine</button>
+            <ion-list>
+                <ion-item *ngIf="medicineList?.length == 0">
+                    <p ion-text color="danger">No medicine added yet.</p>
+                </ion-item>
+                <ion-item *ngFor="let post of medicineList">
+                    <h2>Medicine Name:&nbsp;{{post.medicine.PRODUCT_NME}} </h2>
+                    <p>Frequency:&nbsp;{{post.frequency.TITLE}}</p>
+                    <p>Usage:&nbsp;{{post.usageList.TITLE_URDU}}</p>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header >
+            Lab Tests
+        </ion-card-header>
+        <ion-card-content>
+            <button ion-button color="primary" outline (click)="testModal()">
+                    <ion-icon name="add-circle"></ion-icon>&nbsp;Test
+            </button>
+            <ion-list>
+                <ion-item *ngIf="testList?.length == 0">
+                    <h3 ion-text color="danger">No test added yet.</h3>
+                </ion-item>
+                <ion-item *ngFor="let post of testList">
+                    <h2>Test Name:&nbsp;{{post.test.TITLE}}</h2>
+                    <p>Collection Center:{{post.collectionCenter.CENTER_NME}}</p>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <button ion-button block (click)="savePrescription()"><ion-icon name="cloud-upload" ></ion-icon>&nbsp;Save</button>
+</ion-content>

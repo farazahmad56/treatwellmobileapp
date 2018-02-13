@@ -26,12 +26,22 @@
             <p><ion-icon name="clock"></ion-icon>&nbsp;{{post.APPOINTMENT_TIME}} </p>
             <p><ion-icon name="navigate"></ion-icon>&nbsp;{{post.CLINIC_NME}} </p>
         </ion-card-content>
-        <ion-item *ngIf="post.STATUS_IND === 'P'">
-            <button ion-button icon-left  clear item-end color="danger" (click)="cancelAppointment(post)">
-                <ion-icon name="close"></ion-icon>
-                Cancel
-            </button>
-        </ion-item>
+        <ion-row>
+            <ion-col *ngIf="post.STATUS_IND === 'P'">
+                <button ion-button icon-left  clear item-start color="secondary" (click)="approveAppointment(post)">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <div>Confirm Arrival</div>
+                </button>
+            </ion-col>
+            <ion-col *ngIf="post.STATUS_IND === 'P'">
+            
+                <button ion-button icon-left  clear small color="danger" (click)="cancelAppointment(post)">
+                    <ion-icon name="close"></ion-icon>
+                    Cancel
+                </button>
+            </ion-col>
+        </ion-row>
+        
     </ion-card>
 
 </ion-content>

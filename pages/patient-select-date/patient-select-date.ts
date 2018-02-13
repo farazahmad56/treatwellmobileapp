@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {LoadingController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
-import {PatientSelectTimePage} from '../../pages/patient-select-time/patient-select-time';
+import {PatientSelectTimePage} from '../../pages/pages';
 
 /**
  * Generated class for the PatientSelectDatePage page.
@@ -13,8 +13,8 @@ import {PatientSelectTimePage} from '../../pages/patient-select-time/patient-sel
 
 @IonicPage()
 @Component({
-  selector: 'page-patient-select-date',
-  templateUrl: 'patient-select-date.html',
+    selector: 'page-patient-select-date',
+    templateUrl: 'patient-select-date.html',
 })
 export class PatientSelectDatePage {
     private doctorId: string;
@@ -22,16 +22,16 @@ export class PatientSelectDatePage {
     private clinic: any;
     private doctor: any;
     private appiontmentDates: any;
-    
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+
+    constructor(public navCtrl: NavController, public navParams: NavParams,
         public medicalServiceProvider: MedicalServiceProvider, public loadingCtrl: LoadingController) {
-        
+
         this.clinic = this.navParams.get('clinic');
         this.doctor = this.navParams.get('doctor');
-        
+
         this.doctorId = this.doctor.TW_DOCTOR_ID;
         this.clinicId = this.clinic.TW_CLINIC_ID;
-        
+
         let loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });
@@ -42,9 +42,9 @@ export class PatientSelectDatePage {
             err => {
                 console.log(err);
             });
-       
-  }
-  selectTime(appiontmentDate: any) {
+
+    }
+    selectTime(appiontmentDate: any) {
         var dte = appiontmentDate.DTE;
         this.navCtrl.push(PatientSelectTimePage, {
             clinics: this.clinic,

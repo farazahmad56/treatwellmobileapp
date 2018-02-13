@@ -1,0 +1,48 @@
+<!--
+  Generated template for the AddPrescriptionTestPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Add Test
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                    <span ion-text color="primary">Close</span>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <form [formGroup]="tests" (ngSubmit)="addLabTest()">
+        <ion-list>
+            <ion-item>
+                <ion-label>Test Name</ion-label>
+                <ion-select formControlName="test">
+                    <ion-option *ngFor="let post of test" [value]="post">{{post.TITLE}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Lab Name</ion-label>
+                <ion-select formControlName="lab" #LAB (ionChange)='getCollectionCenters(LAB.value)'>
+                    <ion-option value="">Select Lab</ion-option>
+                    <ion-option *ngFor="let post of lab" [value]="post">{{post.LAB_NME}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Lab Collection Center</ion-label>
+            <ion-select formControlName="collectionCenter">
+                <ion-option value="">Collection Center</ion-option>
+                <ion-option *ngFor="let post of collectionCenter" [value]="post">{{post.CENTER_NME}}</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <button ion-button type="submit" [disabled]="!tests.valid" block >Add
+    </button>
+</form>
+</ion-content>
+

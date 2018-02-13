@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {PatientIntakePage} from '../../pages/patient-intake/patient-intake';
+import {PatientIntakePage} from '../../pages/pages';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {LoadingController} from 'ionic-angular';

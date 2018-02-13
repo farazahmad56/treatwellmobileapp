@@ -25,6 +25,12 @@
             <h2>Today Appointments</h2>
             <ion-badge color="danger" item-end>{{totalAppointments}}</ion-badge>
         </ion-item>
+        <ion-item (click)="openAddPrescription()">
+            <ion-avatar item-start>
+                <img src="assets/imgs/precription.png">
+            </ion-avatar>
+            <h2>Add Prescription</h2>
+        </ion-item>
     </ion-list>
 </ion-content>
 <ion-footer>

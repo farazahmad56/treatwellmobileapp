@@ -1,0 +1,22 @@
+<!--
+  Generated template for the DoctorSelectPatientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title><h2 ion-text color="primary">Select Patient</h2></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item *ngIf="posts?.length == 0">
+            <p ion-text color="danger">No patient is available.</p>
+        </ion-item>
+        <ion-item *ngFor="let post of posts" (click)="selectPatient(post)">
+            {{post.PATIENT_NME}}
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </ion-item>
+    </ion-list>
+</ion-content>

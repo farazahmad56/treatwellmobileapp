@@ -1,0 +1,51 @@
+<!--
+  Generated template for the AddPrescriptionMedicinePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Add Medicine
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                    <span ion-text color="primary">Close</span>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <form [formGroup]="medicines" (ngSubmit)="addMedicine()">
+        <ion-list>
+            <ion-item>
+                <ion-label>Medicine</ion-label>
+                <ion-select formControlName="medicine">
+                    <ion-option *ngFor="let post of medicine" [value]="post">{{post.PRODUCT_NME}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Days</ion-label>
+                <ion-input type="number" required formControlName="days"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Quantity</ion-label>
+                <ion-input type="number" required formControlName="quantity"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Frequency</ion-label>
+                <ion-select formControlName="frequency">
+                    <ion-option *ngFor="let post of frequency" [value]="post">{{post.TITLE}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Usage Instructions</ion-label>
+                <ion-select formControlName="usageList">
+                    <ion-option *ngFor="let post of usage" [value]="post">{{post.TITLE_URDU}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+        <button ion-button type="submit" [disabled]="!medicines.valid" block >Add</button>
+    </form>
+</ion-content>

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {LoadingController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
-import {PatientConfirmAppointmentPage} from '../../pages/patient-confirm-appointment/patient-confirm-appointment';
+import {PatientConfirmAppointmentPage} from '../../pages/pages';
 declare var moment: any;
 
 /**

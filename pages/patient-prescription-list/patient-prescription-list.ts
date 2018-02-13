@@ -3,7 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {LoadingController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
-import {PatientPrescriptionViewPage} from '../../pages/patient-prescription-view/patient-prescription-view';
+import {PatientPrescriptionViewPage} from '../../pages/pages';
 /**
  * Generated class for the PatientPrescriptionListPage page.
  *

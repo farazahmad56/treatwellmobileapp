@@ -5,7 +5,7 @@ import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {LoadingController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
-import {PatientHomePage} from '../../pages/patient-home/patient-home';
+import {PatientHomePage} from '../../pages/pages';;
 declare var calcMD5: any;
 /**
  * Generated class for the ChangePasswordPage page.
