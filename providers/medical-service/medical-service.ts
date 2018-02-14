@@ -305,10 +305,10 @@ export class MedicalServiceProvider {
             }
         }
         if (obj.testList.length && obj.testList.length > 0) {
-            for (var i = 0; i < obj.testList.length; i++) {
-                body.set('labTestIdArr', obj.testList[i].test.TW_LAB_TEST_ID);
-                body.set('labCenterIdArr', obj.testList[i].collectionCenter.TW_LAB_DETAIL_ID);
-                body.set('labIdArr', obj.testList[i].lab.TW_LAB_MASTER_ID);
+            for (var k = 0; k < obj.testList.length; k++) {
+                body.set('labTestIdArr', obj.testList[k].test.TW_LAB_TEST_ID);
+                body.set('labCenterIdArr', obj.testList[k].collectionCenter.TW_LAB_DETAIL_ID);
+                body.set('labIdArr', obj.testList[k].lab.TW_LAB_MASTER_ID);
                 body.set('occurrenceArr', '')
             }
         }

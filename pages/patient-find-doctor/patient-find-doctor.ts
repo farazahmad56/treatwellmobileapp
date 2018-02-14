@@ -19,18 +19,24 @@ import {ToastController} from 'ionic-angular';
 })
 export class PatientFindDoctorPage {
     private doctors: any;
+    private specilityId: any;
+    private cityId: any;
+    private areaId: any;
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public loadingCtrl: LoadingController, public medicalServiceProvider: MedicalServiceProvider,
         public storage: Storage, public toastCtrl: ToastController) {
-        var specilityId = this.navParams.get('specilityId');
-        var cityId = this.navParams.get('cityId');
-        var areaId = this.navParams.get('areaId');
+        this.specilityId = this.navParams.get('specilityId');
+        this.cityId = this.navParams.get('cityId');
+        this.areaId = this.navParams.get('areaId');
 
+        this.loadDoctorsData();
+    }
+    loadDoctorsData() {
         let loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });
         loading.present();
-        this.medicalServiceProvider.getDoctorWithSpecilities(specilityId, cityId, areaId)
+        this.medicalServiceProvider.getDoctorWithSpecilities(this.specilityId, this.cityId, this.areaId)
             .subscribe(
             data => {loading.dismiss(); this.doctors = data;},
             err => {
@@ -61,6 +67,8 @@ export class PatientFindDoctorPage {
                                 duration: 3000
                             });
                             toast.present();
+                            this.loadDoctorsData();
+
                         } else {
                             let toast = this.toastCtrl.create({
                                 message: 'Doctor already added.',

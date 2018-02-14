@@ -126,4 +126,11 @@ export class DoctorAddPrescriptionPage {
 
     }
 
+    deleteMedicine(index: any) {
+        this.medicineList.splice(index, 1);
+    }
+    deleteTest(index: any) {
+        this.testList.splice(index, 1);
+    }
+
 }

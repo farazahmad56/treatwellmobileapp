@@ -13,31 +13,38 @@
     <h2 ion-text text-center color="primary">Step 1 - Select Doctor</h2>
     <ion-card  *ngIf="doctors?.length == 0"><ion-card-content><p ion-text color="danger">No record matched your criteria.</p></ion-card-content></ion-card>
     <ion-card *ngFor="let post of doctors">
-        <ion-card-content>
-            <ion-card-title>
-                {{ post.DOCTOR_NME }}
-            </ion-card-title>
+        <ion-item>
+            <ion-thumbnail item-start *ngIf="post.PROFILE_IMAGE !== ''">
+                           <img src="http://104.154.204.71/doctorProfiles/{{post.TW_DOCTOR_ID}}/{{post.PROFILE_IMAGE}}" alt="Image">
+            </ion-thumbnail>
+            <ion-thumbnail item-start *ngIf="post.PROFILE_IMAGE === ''">
+                           <img src="assets/imgs/icons8-doctor-male-96.png" alt="Image">
+            </ion-thumbnail>
+            <h2>{{ post.DOCTOR_NME }}</h2>
             <p ion-text color="primary"><ion-icon name="medkit"></ion-icon>&nbsp;{{post.SPECILITY}}</p>
             <p ion-text color="secondary"><ion-icon name="list-box"></ion-icon>&nbsp;{{post.EXPERIENCE}} Years of Exp</p>
-            <p><ion-icon name="navigate"></ion-icon>{{post.AREA_NME}}, {{post.CITY_NME}} </p>
-        </ion-card-content>
+            <p><ion-icon name="globe"></ion-icon>&nbsp;{{post.AREA_NME}}, {{post.CITY_NME}} </p>
+        </ion-item>
         <ion-row>
+            <ion-col>
+                &nbsp;
+            </ion-col>
             <ion-col>
                 <button ion-button icon-left clear small color="primary" (click)="selectDoctor(post)">
                     <ion-icon name="calendar"></ion-icon>
-                    <div>Appointment</div>
+                    <div>&nbsp;Book Appointment</div>
                 </button>
             </ion-col>
             <ion-col *ngIf="post.TW_PATIENT_DOCTOR_ID === ''">
                 <button ion-button icon-left clear small color="secondary" (click)="addToFavourites(post)">
                     <ion-icon name="heart"></ion-icon>
-                    <div>Favorite</div>
+                    <div>&nbsp;Add to Favorite</div>
                 </button>
             </ion-col>
             <ion-col *ngIf="post.TW_PATIENT_DOCTOR_ID !== ''">
                 <button ion-button icon-left clear small color="secondary">
                     <ion-icon name="checkmark-circle-outline"></ion-icon>
-                    <div>Favorite</div>
+                    <div>&nbsp;Favorite Doctor</div>
                 </button>
             </ion-col>
         </ion-row>
