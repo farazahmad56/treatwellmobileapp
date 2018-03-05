@@ -336,4 +336,13 @@ export class MedicalServiceProvider {
         var url = this.baseUrl + 'finance.htm?action=getDoctorsForClinic&clinicId=' + clinicId;
         return this.http.get(url)
     }
+    resetPassword(mobileNo: string): Observable<any> {
+        var url = this.baseUrl + 'login.htm?action=resetPassword'
+        let body = new URLSearchParams();
+        body.set('mobileNo', mobileNo);
+        let options = {
+            headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+        };
+        return this.http.post(url, body.toString(), options);
+    }
 }

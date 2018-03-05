@@ -39,4 +39,5 @@ export const PatientPrescriptionViewPage = 'PatientPrescriptionViewPage';
 export const PatientClinicSearchPage = 'PatientClinicSearchPage';
 export const PatientClinicSearchResultPage = 'PatientClinicSearchResultPage';
 export const PatientClinicViewDoctorPage = 'PatientClinicViewDoctorPage';
+export const ForgotPasswordPage = 'ForgotPasswordPage';
 

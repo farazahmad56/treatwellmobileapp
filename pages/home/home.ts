@@ -10,6 +10,7 @@ import {PatientHomePage} from '../../pages/pages';
 import {DoctorHomePage} from '../../pages/pages';
 import {PharmaHomePage} from '../../pages/pages';
 import {ApplicationOverviewPage} from '../../pages/pages';
+import {ForgotPasswordPage} from '../../pages/pages';
 import 'rxjs/add/operator/map';
 import {ToastController} from 'ionic-angular';
 declare var calcMD5: any;
@@ -107,5 +108,8 @@ export class HomePage {
         this.callNumber.callNumber("03200003511", true)
             .then(() => console.log('Launched dialer!'))
             .catch(() => console.log('Error launching dialer'));
+    }
+    resetPassword() {
+        this.navCtrl.setRoot(ForgotPasswordPage);
     }
 }
