@@ -32,6 +32,8 @@ export class PatientSelectTimePage {
         this.date = navParams.get("date");
         this.clinic = navParams.get("clinics");
         this.doctor = navParams.get("doctors");
+        console.log(this.clinic);
+        console.log(this.doctor);
         let loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });

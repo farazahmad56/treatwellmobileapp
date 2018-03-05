@@ -8,6 +8,7 @@ import {PatientPrescriptionListPage} from '../../pages/pages';
 import {PatientSearchClinicPage} from '../../pages/pages';
 import {ChangePasswordPage} from '../../pages/pages';
 import {HomePage} from '../../pages/pages';
+import {PatientClinicSearchPage} from '../../pages/pages';
 import {Storage} from '@ionic/storage';
 /**
  * Generated class for the PatientHomePage page.
@@ -49,5 +50,8 @@ export class PatientHomePage {
     }
     openChangePassword() {
         this.navCtrl.push(ChangePasswordPage);
+    }
+    openFindHospital() {
+        this.navCtrl.push(PatientClinicSearchPage);
     }
 }

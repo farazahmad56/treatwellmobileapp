@@ -19,19 +19,19 @@ export class ApplicationOverviewPage {
     @ViewChild(Slides) slides: Slides;
     data = [
         {
-            image: "assets/imgs/slide_1.jpg",
+            image: "assets/imgs/001.png",
         },
         {
-            image: "assets/imgs/slide_2.jpg",
+            image: "assets/imgs/002.png",
         },
         {
-            image: "assets/imgs/slide_4.jpg",
+            image: "assets/imgs/003.png",
         },
         {
-            image: "assets/imgs/slide-5.jpg",
+            image: "assets/imgs/004.png",
         },
         {
-            image: "assets/imgs/slide_6.jpg",
+            image: "assets/imgs/005.png",
         }
     ];
     constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {

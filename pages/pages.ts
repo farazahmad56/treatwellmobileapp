@@ -36,3 +36,7 @@ export const ViewFavDoctorsPage = 'ViewFavDoctorsPage';
 export const ViewPatientAppointmentPage = 'ViewPatientAppointmentPage';
 export const PatientAttachmentPage = 'PatientAttachmentPage';
 export const PatientPrescriptionViewPage = 'PatientPrescriptionViewPage';
+export const PatientClinicSearchPage = 'PatientClinicSearchPage';
+export const PatientClinicSearchResultPage = 'PatientClinicSearchResultPage';
+export const PatientClinicViewDoctorPage = 'PatientClinicViewDoctorPage';
+

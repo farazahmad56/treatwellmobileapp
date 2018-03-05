@@ -13,7 +13,8 @@ import {HttpHeaders} from '@angular/common/http';
 */
 @Injectable()
 export class MedicalServiceProvider {
-    private baseUrl = 'http://104.154.204.71/treatwell_mobile/';
+    //private baseUrl = 'http://104.154.204.71/treatwell_mobile/';
+    private baseUrl = 'http://35.198.187.239/ezimedic_mobile/';
     //    private baseUrl = 'http://192.168.0.104:8080/treatwell_mobile/';
     constructor(public http: HttpClient) {
 
@@ -326,5 +327,13 @@ export class MedicalServiceProvider {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
         return this.http.post(url, body.toString(), options);
+    }
+    getClinicsByArea(cityId: string, areaId: string): Observable<any> {
+        var url = this.baseUrl + 'finance.htm?action=getClinics&cityId=' + cityId + '&areaId' + areaId;
+        return this.http.get(url)
+    }
+    getDoctorsByClinics(clinicId: string): Observable<any> {
+        var url = this.baseUrl + 'finance.htm?action=getDoctorsForClinic&clinicId=' + clinicId;
+        return this.http.get(url)
     }
 }
