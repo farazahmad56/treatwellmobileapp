@@ -16,6 +16,7 @@ import {Device} from '@ionic-native/device';
 import {MyApp} from './app.component';
 import {MedicalServiceProvider} from '../providers/medical-service/medical-service';
 import {OneSignal} from '@ionic-native/onesignal';
+import {SocialSharing} from '@ionic-native/social-sharing';
 @NgModule({
     declarations: [
         MyApp,
@@ -44,7 +45,8 @@ import {OneSignal} from '@ionic-native/onesignal';
         PhotoViewer,
         Geolocation,
         Device,
-        OneSignal
+        OneSignal,
+        SocialSharing
     ]
 })
 export class AppModule {}

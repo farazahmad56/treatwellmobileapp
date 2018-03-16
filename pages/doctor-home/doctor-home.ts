@@ -5,7 +5,8 @@ import {HomePage} from '../../pages/home/home';
 import {Storage} from '@ionic/storage';
 import {LoadingController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
-import {DoctorSelectPatientPage} from '../../pages/pages';;
+import {DoctorSelectPatientPage} from '../../pages/pages';
+import {SocialSharing} from '@ionic-native/social-sharing';
 /**
  * Generated class for the DoctorHomePage page.
  *
@@ -21,7 +22,8 @@ import {DoctorSelectPatientPage} from '../../pages/pages';;
 export class DoctorHomePage {
     private totalAppointments: number;
     constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,
-        public loadingCtrl: LoadingController, public medicalServiceProvider: MedicalServiceProvider) {
+        public loadingCtrl: LoadingController, public medicalServiceProvider: MedicalServiceProvider,
+        public socialSharing: SocialSharing) {
         let loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });
@@ -47,5 +49,10 @@ export class DoctorHomePage {
     }
     openAddPrescription() {
         this.navCtrl.push(DoctorSelectPatientPage);
+    }
+    shareApplicationCode() {
+        var msg = 'Kindly download our app ezimedic to schedule your patient appointments directly and to keep your patients record.';
+        msg += ' To download please visit: https://play.google.com/store/apps/details?id=com.fabsol.ezimedic';
+        this.socialSharing.share(msg, null, null, null);
     }
 }

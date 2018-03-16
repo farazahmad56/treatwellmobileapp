@@ -27,9 +27,6 @@
         </ion-item>
         <ion-row>
             <ion-col>
-                &nbsp;
-            </ion-col>
-            <ion-col>
                 <button ion-button icon-left clear small color="primary" (click)="selectDoctor(post)">
                     <ion-icon name="calendar"></ion-icon>
                     <div>&nbsp;Book Appointment</div>
@@ -39,12 +36,6 @@
                 <button ion-button icon-left clear small color="secondary" (click)="addToFavourites(post)">
                     <ion-icon name="heart"></ion-icon>
                     <div>&nbsp;Add to Favorite</div>
-                </button>
-            </ion-col>
-            <ion-col *ngIf="post.TW_PATIENT_DOCTOR_ID !== ''">
-                <button ion-button icon-left clear small color="secondary">
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                    <div>&nbsp;Favorite Doctor</div>
                 </button>
             </ion-col>
         </ion-row>

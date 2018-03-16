@@ -10,6 +10,7 @@ import {ChangePasswordPage} from '../../pages/pages';
 import {HomePage} from '../../pages/pages';
 import {PatientClinicSearchPage} from '../../pages/pages';
 import {Storage} from '@ionic/storage';
+import {SocialSharing} from '@ionic-native/social-sharing';
 /**
  * Generated class for the PatientHomePage page.
  *
@@ -24,7 +25,9 @@ import {Storage} from '@ionic/storage';
 })
 export class PatientHomePage {
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,
+        public socialSharing: SocialSharing) {
+
     }
     openFindDoctor() {
         this.navCtrl.push(PatientDoctorFilterPage);
@@ -53,5 +56,10 @@ export class PatientHomePage {
     }
     openFindHospital() {
         this.navCtrl.push(PatientClinicSearchPage);
+    }
+    shareApplicationCode() {
+        var msg = 'Kindly download our app ezimedic to schedule your future appointments directly and to keep your medical record.';
+        msg += ' To download please visit: https://play.google.com/store/apps/details?id=com.fabsol.ezimedic';
+        this.socialSharing.share(msg, null, null, null);
     }
 }
