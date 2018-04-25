@@ -64,8 +64,15 @@
             </ion-item>
             <ion-item>
                 <ion-label floating>Residence City</ion-label>
-                <ion-select formControlName="cityId">
+                <ion-select #C (ionChange)='getArea(C.value)'  formControlName="cityId">
                     <ion-option *ngFor="let post of cities" value="{{post.CITY_ID}}">{{post.CITY_NME}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Area</ion-label>
+                <ion-select formControlName="areaId">
+                    <ion-option value="">Area</ion-option>
+                    <ion-option *ngFor="let post of area" value="{{post.CITY_AREA_ID}}">{{post.AREA_NME}}</ion-option>
                 </ion-select>
             </ion-item>
             <button ion-button type="submit" [disabled]="!patient.valid" block >Next&nbsp;&nbsp;&nbsp;

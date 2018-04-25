@@ -14,7 +14,7 @@ import {HttpHeaders} from '@angular/common/http';
 @Injectable()
 export class MedicalServiceProvider {
     //private baseUrl = 'http://104.154.204.71/treatwell_mobile/';
-    private baseUrl = 'http://35.198.187.239/ezimedic_mobile/';
+    private baseUrl = 'http://35.198.128.0/ezimedic_mobile/';
     //    private baseUrl = 'http://192.168.0.104:8080/treatwell_mobile/';
     constructor(public http: HttpClient) {
 
@@ -33,13 +33,13 @@ export class MedicalServiceProvider {
         var url = this.baseUrl + 'finance.htm?action=getDiseasesForIntakeForm';
         return this.http.get(url)
     }
-    savePatient(patient: any): Observable<any> {
+    savePatient(patient: any, dob: string): Observable<any> {
         var url = this.baseUrl + 'finance.htm?action=savePatient'
         let body = new URLSearchParams();
         body.set('patientName', patient.patientName);
         body.set('contactNo', patient.contactNo);
         body.set('email', patient.email);
-        body.set('dob', patient.dob);
+        body.set('dob', dob);
         body.set('gender', patient.gender);
         body.set('profession', patient.profession);
         body.set('referredBy', patient.referredBy);
@@ -52,6 +52,7 @@ export class MedicalServiceProvider {
         body.set('addedFrom', 'MOBILE');
         body.set('bloodGroupId', patient.bloodGroupId);
         body.set('wantDonateBlood', patient.canDonateBlood);
+        body.set('areaId', patient.areaId);
         let options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
@@ -146,6 +147,7 @@ export class MedicalServiceProvider {
     }
     getAppointmentDates(doctorId: any, clinicId: any): Observable<any> {
         var url = this.baseUrl + 'finance.htm?action=getAppointmentDates&doctorId=' + doctorId + '&clinicId=' + clinicId;
+        console.log(url);
         return this.http.get(url)
     }
     getAppointedTime(doctorId: any, clinicId: any, date: any): Observable<any> {

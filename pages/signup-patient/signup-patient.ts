@@ -5,6 +5,8 @@ import {MedicalServiceProvider} from '../../providers/medical-service/medical-se
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {LoadingController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
+import {ToastController} from 'ionic-angular';
+import {HomePage} from '../../pages/home/home';
 declare var moment: any;
 /**
  * Generated class for the SignupPatientPage page.
@@ -21,22 +23,24 @@ declare var moment: any;
 export class SignupPatientPage {
     private patient: FormGroup;
     cities: any;
+    area: any;
     bloodGroups: any;
     constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder,
         public loadingCtrl: LoadingController, public medicalServiceProvider: MedicalServiceProvider,
-        public storage: Storage) {
+        public storage: Storage, private toastCtrl: ToastController) {
         this.patient = this.formBuilder.group({
             patientName: ['', Validators.required],
             contactNo: ['', Validators.required],
             email: [''],
-            dob: [''],
+            dob: ['', Validators.required],
             age: [''],
             gender: ['M'],
             profession: [''],
             referredBy: [''],
             cityId: ['3'],
             bloodGroupId: ['2'],
-            canDonateBlood: ['N']
+            canDonateBlood: ['N'],
+            areaId: ['']
         });
         let loading = this.loadingCtrl.create({
             content: 'Please wait...'
@@ -54,40 +58,62 @@ export class SignupPatientPage {
             err => {
                 console.log(err);
             });
+        this.getArea(this.patient.value.cityId);
     }
 
 
     savePatientInfo() {
-        //        this.navCtrl.push(PatientIntakePage, {
-        //            patientId: '108'
-        //        });
         let loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });
         loading.present();
         var obj = this.patient.value;
-        if (obj.dob !== '') {
-            var dob = moment(obj.dob);
-            obj.dob = dob.format('DD-MM-YYYY');
-            if (obj.age === '') {
-                var a = moment();
-                var b = dob;
-                var age = a.diff(b, 'years'); // 1
-                obj.age = age;
-            }
 
+        var dob = moment(obj.dob);
+        if (obj.age === '') {
+            var a = moment();
+            var b = dob;
+            var age = a.diff(b, 'years'); // 1
+            obj.age = age;
         }
-        this.medicalServiceProvider.savePatient(obj)
+        dob = dob.format('DD-MM-YYYY');
+        this.medicalServiceProvider.savePatient(obj, dob)
             .subscribe(
             data => {
                 loading.dismiss();
                 if (data.result === 'save_success') {
                     var patientId = data.patientId;
-                    this.navCtrl.setRoot(PatientIntakePage, {
-                        patientId: patientId
-                    });
+                    this.showMessage('Your account has been created. Please wait for sms to get username and password for your account.');
+                } else {
+                    this.showMessage('You are entering a mobile number which is seems to be used already. Please try again with a valid mobile number .');
                 }
             },
+            err => {
+                console.log(err);
+            });
+    }
+
+    showMessage(msg: string) {
+        let toast = this.toastCtrl.create({
+            message: msg,
+            duration: 4000,
+            position: 'middle',
+            showCloseButton: true,
+            closeButtonText: 'Ok'
+        });
+        toast.onDidDismiss(() => {
+            this.navCtrl.setRoot(HomePage);
+        });
+        toast.present();
+    }
+    getArea(cityId: string) {
+        let loadingArea = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loadingArea.present();
+        this.medicalServiceProvider.getAreas(cityId)
+            .subscribe(
+            data => {loadingArea.dismiss(); this.area = data;},
             err => {
                 console.log(err);
             });

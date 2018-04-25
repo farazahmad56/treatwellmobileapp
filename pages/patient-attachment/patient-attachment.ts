@@ -151,7 +151,7 @@ export class PatientAttachmentPage {
 
     public uploadImage() {
         // Destination URL
-        var baseUrl = 'http://35.198.187.239/ezimedic_mobile/';
+        var baseUrl = 'http://35.198.128.0/ezimedic_mobile/';
         var url = baseUrl + 'finance.htm?action=uploadPatientAttachment';
 
         // File for Upload
@@ -189,7 +189,7 @@ export class PatientAttachmentPage {
     displayFullImage(obj: any) {
         this.storage.get('loggedInPatientId').then((val) => {
             if (val !== '') {
-                this.photoViewer.show('http://35.198.187.239/patientMobileAttachments/' + val + '/' + obj.FILE_NME, obj.FILE_NME, {share: false});
+                this.photoViewer.show('http://35.198.128.0/patientMobileAttachments/' + val + '/' + obj.FILE_NME, obj.FILE_NME, {share: false});
             }
         });
     }

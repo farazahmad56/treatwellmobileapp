@@ -36,7 +36,7 @@ export class ForgotPasswordPage {
                     loading.dismiss();
                     if (data.result === 'save_success') {
                         let toast = this.toastCtrl.create({
-                            message: 'New password has been sent via sms. If you will not receive any sms within 5 minutes contact treatwell services.',
+                            message: 'New password has been sent via sms. If you will not receive any sms within 5 minutes contact system admin.',
                             duration: 5000,
                             position: 'middle',
                             showCloseButton: true,
