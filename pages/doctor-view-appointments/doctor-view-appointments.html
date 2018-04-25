@@ -6,7 +6,7 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><h2 ion-text color="primary">Today Appointments</h2></ion-title>
+        <ion-title><h2 ion-text color="primary">View Appointments</h2></ion-title>
         <ion-buttons end>
             <button ion-button icon-only (click)="logOutUser()">
                     <ion-icon name="log-out"></ion-icon>
@@ -15,6 +15,12 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label>Appointment Date</ion-label>
+            <ion-datetime [(ngModel)]="appointmentDate"  (ionChange)="showAppintments()" displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"  ></ion-datetime>
+        </ion-item>
+    </ion-list>
     <ion-card  *ngIf="dates?.length == 0"><ion-card-content><p ion-text color="danger">No appointment made for today.</p></ion-card-content></ion-card>
     <ion-card *ngFor="let post of dates">
         <ion-card-content>
@@ -34,14 +40,14 @@
                 </button>
             </ion-col>
             <ion-col *ngIf="post.STATUS_IND === 'P'">
-            
+
                 <button ion-button icon-left  clear small color="danger" (click)="cancelAppointment(post)">
                     <ion-icon name="close"></ion-icon>
                     Cancel
                 </button>
             </ion-col>
         </ion-row>
-        
+
     </ion-card>
 
 </ion-content>

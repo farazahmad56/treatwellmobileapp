@@ -158,8 +158,8 @@ export class MedicalServiceProvider {
         var url = this.baseUrl + 'finance.htm?action=getAppointmentsForPatient&patientId=' + patientId;
         return this.http.get(url)
     }
-    getDoctorAppointments(doctorId: string): Observable<any> {
-        var url = this.baseUrl + 'finance.htm?action=getAppointmentsForDoctor&doctorId=' + doctorId;
+    getDoctorAppointments(doctorId: string, date: string): Observable<any> {
+        var url = this.baseUrl + 'finance.htm?action=getAppointmentsForDoctor&doctorId=' + doctorId + '&appointmentDate=' + date;
         return this.http.get(url)
     }
 

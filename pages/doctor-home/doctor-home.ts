@@ -7,6 +7,7 @@ import {LoadingController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
 import {DoctorSelectPatientPage} from '../../pages/pages';
 import {SocialSharing} from '@ionic-native/social-sharing';
+declare var moment: any;
 /**
  * Generated class for the DoctorHomePage page.
  *
@@ -30,7 +31,8 @@ export class DoctorHomePage {
         this.storage.get('loggedInDoctorId').then((val) => {
             if (val !== '') {
                 loading.present();
-                this.medicalServiceProvider.getDoctorAppointments(val)
+                var dt = moment().format('DD-MM-YYYY');
+                this.medicalServiceProvider.getDoctorAppointments(val, dt)
                     .subscribe(
                     data => {loading.dismiss(); this.totalAppointments = data.length;},
                     err => {

@@ -5,6 +5,7 @@ import {Storage} from '@ionic/storage';
 import {LoadingController} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
+declare var moment: any;
 /**
  * Generated class for the DoctorViewAppointmentsPage page.
  *
@@ -19,16 +20,23 @@ import {MedicalServiceProvider} from '../../providers/medical-service/medical-se
 })
 export class DoctorViewAppointmentsPage {
     private dates: any;
+    public appointmentDate: any = new Date().toISOString();
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public loadingCtrl: LoadingController, public medicalServiceProvider: MedicalServiceProvider,
         public storage: Storage, public toastCtrl: ToastController, public alertCtrl: AlertController) {
+        this.displayAppointments();
+    }
+
+    displayAppointments() {
         let loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });
         this.storage.get('loggedInDoctorId').then((val) => {
             if (val !== '') {
                 loading.present();
-                this.medicalServiceProvider.getDoctorAppointments(val)
+                var m = moment(this.appointmentDate);
+                var dt = m.format('DD-MM-YYYY');
+                this.medicalServiceProvider.getDoctorAppointments(val, dt)
                     .subscribe(
                     data => {loading.dismiss(); this.dates = data;},
                     err => {
@@ -67,16 +75,7 @@ export class DoctorViewAppointmentsPage {
                                 if (data.result === 'save_success') {
                                     toast.present();
                                     //
-                                    this.storage.get('loggedInDoctorId').then((val) => {
-                                        if (val !== '') {
-                                            this.medicalServiceProvider.getDoctorAppointments(val)
-                                                .subscribe(
-                                                data => {loading.dismiss(); this.dates = data;},
-                                                err => {
-                                                    console.log(err);
-                                                });
-                                        }
-                                    });
+                                    this.displayAppointments();
                                     //
                                 }
                             },
@@ -119,17 +118,7 @@ export class DoctorViewAppointmentsPage {
                                 if (data.result === 'save_success') {
                                     toast.present();
                                     //
-                                    this.storage.get('loggedInDoctorId').then((val) => {
-                                        if (val !== '') {
-                                            this.medicalServiceProvider.getDoctorAppointments(val)
-                                                .subscribe(
-                                                data => {loading.dismiss(); this.dates = data;},
-                                                err => {
-                                                    console.log(err);
-                                                });
-                                        }
-                                    });
-                                    //
+                                    this.displayAppointments();
                                 }
                             },
                             err => {
@@ -140,5 +129,9 @@ export class DoctorViewAppointmentsPage {
             ]
         });
         confirm.present();
+    }
+
+    showAppintments() {
+        this.displayAppointments();
     }
 }
