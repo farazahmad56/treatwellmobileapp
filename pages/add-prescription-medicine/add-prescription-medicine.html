@@ -48,4 +48,15 @@
         </ion-list>
         <button ion-button type="submit" [disabled]="!medicines.valid" block >Add</button>
     </form>
+    <ion-list>
+                <ion-item *ngIf="medicineList?.length == 0">
+                    <p ion-text color="danger">No medicine added yet.</p>
+                </ion-item>
+                <ion-item *ngFor="let post of medicineList;index as i">
+                    <h2>Medicine Name:&nbsp;{{post.medicine.PRODUCT_NME}} </h2>
+                    <p>Frequency:&nbsp;{{post.frequency.TITLE}}</p>
+                    <p>Usage:&nbsp;{{post.usageList.TITLE_URDU}}</p>
+                    <button ion-button clear icon-only color="danger" item-end (click)="deleteMedicine(i)"><ion-icon name="trash"></ion-icon></button>
+                </ion-item>
+            </ion-list>
 </ion-content>

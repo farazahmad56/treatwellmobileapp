@@ -21,9 +21,11 @@ export class AddPrescriptionTestPage {
     private test: any;
     private lab: any;
     private collectionCenter: any;
+    private testList: any = [];
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public medicalServiceProvider: MedicalServiceProvider, public viewCtrl: ViewController,
         private formBuilder: FormBuilder, public loadingCtrl: LoadingController) {
+        this.testList = this.navParams.get('testList');
         this.tests = this.formBuilder.group({
             test: ['', Validators.required],
             lab: [''],
@@ -48,10 +50,11 @@ export class AddPrescriptionTestPage {
             });
     }
     dismiss() {
-        this.viewCtrl.dismiss();
+        this.viewCtrl.dismiss(this.testList);
     }
     addLabTest() {
-        this.viewCtrl.dismiss(this.tests.value);
+         let data = this.tests.value;
+        this.testList.push({test: data.test, lab: data.lab, collectionCenter: data.collectionCenter});
     }
     getCollectionCenters(lab: any) {
         let loadingArea = this.loadingCtrl.create({
@@ -64,5 +67,9 @@ export class AddPrescriptionTestPage {
             err => {
                 console.log(err);
             });
+    }
+
+    deleteTest(index: any) {
+        this.testList.splice(index, 1);
     }
 }

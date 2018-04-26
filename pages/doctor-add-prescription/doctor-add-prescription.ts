@@ -33,24 +33,31 @@ export class DoctorAddPrescriptionPage {
         this.patient = this.navParams.get('patient');
     }
     medicineModal() {
-        let medicineModal = this.ModalCtrl.create(AddPrescriptionMedicinePage);
+        let medicineModal = this.ModalCtrl.create(AddPrescriptionMedicinePage, {medicineList: this.medicineList});
         medicineModal.present();
         medicineModal.onDidDismiss(data => {
-            if (data) {
-                this.medicineList.push({
-                    medicine: data.medicine, frequency: data.frequency, usageList: data.usageList,
-                    days: data.days, quantity: data.quantity
-                });
+            if (data != null) {
+                this.medicineList.lenght=0;
+                for(let i=0 ; i < data.lenght ; i++){ 
+                   this.medicineList.push({
+                    medicine: data[i].medicine, frequency: data[i].frequency, usageList: data[i].usageList,
+                    days: data[i].days, quantity: data[i].quantity
+                    });
+            }
+                
             }
         });
 
     }
     testModal() {
-        let testModal = this.ModalCtrl.create(AddPrescriptionTestPage);
+        let testModal = this.ModalCtrl.create(AddPrescriptionTestPage, {testList: this.testList});
         testModal.present();
         testModal.onDidDismiss(data => {
             if (data) {
-                this.testList.push({test: data.test, lab: data.lab, collectionCenter: data.collectionCenter});
+                this.testList.lenght=0;
+                for(let i=0 ; i < data.lenght ; i++){ 
+                    this.testList.push({test: data[i].test, lab: data[i].lab, collectionCenter: data[i].collectionCenter});
+                }
             }
         });
     }
@@ -126,11 +133,6 @@ export class DoctorAddPrescriptionPage {
 
     }
 
-    deleteMedicine(index: any) {
-        this.medicineList.splice(index, 1);
-    }
-    deleteTest(index: any) {
-        this.testList.splice(index, 1);
-    }
+    
 
 }

@@ -44,5 +44,15 @@
     <button ion-button type="submit" [disabled]="!tests.valid" block >Add
     </button>
 </form>
+<ion-list>
+                <ion-item *ngIf="testList?.length == 0">
+                    <h3 ion-text color="danger">No test added yet.</h3>
+                </ion-item>
+                <ion-item *ngFor="let post of testList;index as i">
+                    <h2>Test Name:&nbsp;{{post.test.TITLE}}</h2>
+                    <p>Collection Center:{{post.collectionCenter.CENTER_NME}}</p>
+                    <button ion-button clear icon-only color="danger" (click)="deleteTest(i)" item-end><ion-icon name="trash" ></ion-icon></button>
+                </ion-item>
+            </ion-list>
 </ion-content>
 

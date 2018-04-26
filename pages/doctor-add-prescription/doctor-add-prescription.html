@@ -24,25 +24,32 @@
             <ion-textarea [(ngModel)]="prescription.doctorRemarks" [ngModelOptions]="{standalone: true}"></ion-textarea>
         </ion-item>
     </ion-list>
+    <ion-list>
+        <ion-item  (click)="medicineModal()">
+            &nbsp;Medicine
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </ion-item>
+        <ion-item  (click)="testModal()">
+            &nbsp;Test
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </ion-item>
+        <ion-item  (click)="examinationModal()">
+            &nbsp;Examination
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </ion-item>
+        <ion-item  (click)="vaccinationModal()">
+            &nbsp;Vaccination
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </ion-item>
+    </ion-list>
 
-    <ion-card>
+    <!-- <ion-card>
         <ion-card-header >
             Medicines
         </ion-card-header>
         <ion-card-content>
             <button ion-button color="primary" outline (click)="medicineModal()">
                     <ion-icon name="add-circle"></ion-icon>&nbsp;Medicine</button>
-            <ion-list>
-                <ion-item *ngIf="medicineList?.length == 0">
-                    <p ion-text color="danger">No medicine added yet.</p>
-                </ion-item>
-                <ion-item *ngFor="let post of medicineList;index as i">
-                    <h2>Medicine Name:&nbsp;{{post.medicine.PRODUCT_NME}} </h2>
-                    <p>Frequency:&nbsp;{{post.frequency.TITLE}}</p>
-                    <p>Usage:&nbsp;{{post.usageList.TITLE_URDU}}</p>
-                    <button ion-button clear icon-only color="danger" item-end (click)="deleteMedicine(i)"><ion-icon name="trash"></ion-icon></button>
-                </ion-item>
-            </ion-list>
         </ion-card-content>
     </ion-card>
     <ion-card>
@@ -53,17 +60,7 @@
             <button ion-button color="primary" outline (click)="testModal()">
                     <ion-icon name="add-circle"></ion-icon>&nbsp;Test
             </button>
-            <ion-list>
-                <ion-item *ngIf="testList?.length == 0">
-                    <h3 ion-text color="danger">No test added yet.</h3>
-                </ion-item>
-                <ion-item *ngFor="let post of testList;index as i">
-                    <h2>Test Name:&nbsp;{{post.test.TITLE}}</h2>
-                    <p>Collection Center:{{post.collectionCenter.CENTER_NME}}</p>
-                    <button ion-button clear icon-only color="danger" (click)="deleteTest(i)" item-end><ion-icon name="trash" ></ion-icon></button>
-                </ion-item>
-            </ion-list>
         </ion-card-content>
-    </ion-card>
+    </ion-card> -->
     <button ion-button block (click)="savePrescription()"><ion-icon name="cloud-upload" ></ion-icon>&nbsp;Save</button>
 </ion-content>
