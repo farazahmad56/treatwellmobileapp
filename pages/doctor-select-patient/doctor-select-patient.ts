@@ -4,7 +4,7 @@ import {LoadingController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
 import {DoctorAddPrescriptionPage} from '../../pages/pages';
-
+declare var moment: any;
 /**
  * Generated class for the DoctorSelectPatientPage page.
  *
@@ -25,10 +25,13 @@ export class DoctorSelectPatientPage {
         let loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });
+
         this.storage.get('loggedInDoctorId').then((val) => {
             if (val !== null && val !== '') {
                 loading.present();
-                this.medicalServiceProvider.getPatientsForPrescription(val)
+                var m = moment();
+                var dt = m.format('DD-MM-YYYY');
+                this.medicalServiceProvider.getDoctorAppointments(val, dt)
                     .subscribe(
                     data => {loading.dismiss(); this.posts = data;},
                     err => {

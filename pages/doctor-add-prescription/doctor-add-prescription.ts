@@ -8,7 +8,8 @@ import {ToastController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {LoadingController} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
-import {DoctorHomePage} from '../../pages/pages';;
+import {DoctorHomePage} from '../../pages/pages';
+declare var moment: any;
 /**
  * Generated class for the DoctorAddPrescriptionPage page.
  *
@@ -26,25 +27,43 @@ export class DoctorAddPrescriptionPage {
     private testList: any = [];
     private patient: any;
     private prescription: any = {};
+    private prescNo: any;
+    private prescDate: any;
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public ModalCtrl: ModalController, private toastCtrl: ToastController,
         public loadingCtrl: LoadingController, public storage: Storage,
         public medicalServiceProvider: MedicalServiceProvider, public alertCtrl: AlertController) {
         this.patient = this.navParams.get('patient');
+        let loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        this.storage.get('loggedInDoctorId').then((val) => {
+            if (val !== '') {
+                var m = moment();
+                var dt = m.format('DD-MM-YYYY');
+                this.medicalServiceProvider.getNextPrescriptionNumber(val, this.patient.TW_PATIENT_ID, this.patient.TW_CLINIC_ID)
+                    .subscribe(
+                    data => {loading.dismiss(); this.prescNo = data.nextPrescriptionNumber; this.prescDate = dt;},
+                    err => {
+                        console.log(err);
+                    });
+            }
+        });
+
     }
     medicineModal() {
         let medicineModal = this.ModalCtrl.create(AddPrescriptionMedicinePage, {medicineList: this.medicineList});
         medicineModal.present();
         medicineModal.onDidDismiss(data => {
             if (data != null) {
-                this.medicineList.lenght=0;
-                for(let i=0 ; i < data.lenght ; i++){ 
-                   this.medicineList.push({
-                    medicine: data[i].medicine, frequency: data[i].frequency, usageList: data[i].usageList,
-                    days: data[i].days, quantity: data[i].quantity
+                this.medicineList.lenght = 0;
+                for (let i = 0; i < data.lenght; i++) {
+                    this.medicineList.push({
+                        medicine: data[i].medicine, frequency: data[i].frequency, usageList: data[i].usageList,
+                        days: data[i].days, quantity: data[i].quantity
                     });
-            }
-                
+                }
+
             }
         });
 
@@ -54,18 +73,17 @@ export class DoctorAddPrescriptionPage {
         testModal.present();
         testModal.onDidDismiss(data => {
             if (data) {
-                this.testList.lenght=0;
-                for(let i=0 ; i < data.lenght ; i++){ 
+                this.testList.lenght = 0;
+                for (let i = 0; i < data.lenght; i++) {
                     this.testList.push({test: data[i].test, lab: data[i].lab, collectionCenter: data[i].collectionCenter});
                 }
             }
         });
     }
     savePrescription() {
-
         let confirm = this.alertCtrl.create({
-            title: 'Saving warning?',
-            message: 'Do you agree to save this prescription without any medicine added?',
+            title: 'Saving?',
+            message: 'Do you want to save this prescription?',
             buttons: [
                 {
                     text: 'No',
@@ -100,7 +118,8 @@ export class DoctorAddPrescriptionPage {
                 var obj = {
                     patientId: this.patient.TW_PATIENT_ID, clinicId: this.patient.TW_CLINIC_ID,
                     remarks: remarks, doctorId: val, userName: userName,
-                    medicineList: this.medicineList, testList: this.testList
+                    medicineList: this.medicineList, testList: this.testList,
+                    prescNo: this.prescNo
                 };
 
                 let toast = this.toastCtrl.create({
@@ -133,6 +152,6 @@ export class DoctorAddPrescriptionPage {
 
     }
 
-    
+
 
 }

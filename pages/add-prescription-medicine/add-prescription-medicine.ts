@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
+import {AlertController} from 'ionic-angular';
 import {MedicalServiceProvider} from '../../providers/medical-service/medical-service';
 
 /**
@@ -24,7 +25,7 @@ export class AddPrescriptionMedicinePage {
     private medicineList: any = [];
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public medicalServiceProvider: MedicalServiceProvider, public viewCtrl: ViewController,
-        private formBuilder: FormBuilder, public storage: Storage) {
+        private formBuilder: FormBuilder, public storage: Storage, public alertCtrl: AlertController) {
         this.medicineList = this.navParams.get('medicineList');
         this.medicines = this.formBuilder.group({
             medicine: ['', Validators.required],
@@ -61,14 +62,42 @@ export class AddPrescriptionMedicinePage {
     }
     addMedicine() {
         let data = this.medicines.value;
-        this.medicineList.push({
+        if (data.medicine === '') {
+            let alert = this.alertCtrl.create({
+                title: 'Empty Medicine!',
+                subTitle: 'Please select medicine to add!',
+                buttons: ['OK']
+            });
+            alert.present();
+        } else {
+            if (!this.isMedicineAlreadyExists(data.medicine)) {
+                this.medicineList.push({
                     medicine: data.medicine, frequency: data.frequency, usageList: data.usageList,
                     days: data.days, quantity: data.quantity
                 });
+            } else {
+                let alert = this.alertCtrl.create({
+                    title: 'Duplicate Medicine!',
+                    subTitle: 'Medicine already added in list!',
+                    buttons: ['OK']
+                });
+                alert.present();
+            }
+        }
     }
 
     deleteMedicine(index: any) {
         this.medicineList.splice(index, 1);
+    }
+    isMedicineAlreadyExists(medicineId: string) {
+        var flag: boolean = false;
+        for (var i = 0; i < this.medicineList.length; i++) {
+            if (this.medicineList[i].medicine === medicineId) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
     }
 
 }

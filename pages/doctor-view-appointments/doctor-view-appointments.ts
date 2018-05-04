@@ -25,6 +25,8 @@ export class DoctorViewAppointmentsPage {
         public loadingCtrl: LoadingController, public medicalServiceProvider: MedicalServiceProvider,
         public storage: Storage, public toastCtrl: ToastController, public alertCtrl: AlertController) {
         this.displayAppointments();
+        
+        
     }
 
     displayAppointments() {
@@ -72,6 +74,7 @@ export class DoctorViewAppointmentsPage {
                         loading.present();
                         this.medicalServiceProvider.cancelAppointment(appointment.TW_APPOINTMENT_ID).subscribe(
                             data => {
+                                loading.dismiss();
                                 if (data.result === 'save_success') {
                                     toast.present();
                                     //
@@ -115,6 +118,7 @@ export class DoctorViewAppointmentsPage {
                         loading.present();
                         this.medicalServiceProvider.confirmAppointment(appointment.TW_APPOINTMENT_ID).subscribe(
                             data => {
+                                loading.dismiss();
                                 if (data.result === 'save_success') {
                                     toast.present();
                                     //

@@ -15,52 +15,48 @@
             <h3>Patient Name: {{patient.PATIENT_NME}}</h3>
         </ion-item>
         <ion-item>
-            <h3>Contact No.: {{patient.MOBILE_NO}}</h3>
+            <h3>Prescription#: {{prescNo}}</h3>
         </ion-item>
+        <ion-item>
+            <h3>Date: {{prescDate}}</h3>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <button ion-item  (click)="medicineModal()">
+                <ion-avatar item-start>
+                <img src="assets/imgs/icons8-hand-with-a-pill-64.png">
+            </ion-avatar>
+
+            Medicine
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </button>
+        <button ion-item  (click)="testModal()">
+                <ion-avatar item-start>
+                <img src="assets/imgs/icons8-test-tube-40.png">
+            </ion-avatar>
+            Test
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </button>
+        <button ion-item  >
+            <ion-avatar item-start>
+                <img src="assets/imgs/icons8-view-64.png">
+            </ion-avatar>
+            Examination
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </button>
+        <button ion-item >
+            <ion-avatar item-start>
+                <img src="assets/imgs/icons8-syringe-64.png">
+            </ion-avatar>
+            Vaccination
+            <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </button>
     </ion-list>
     <ion-list>
         <ion-item>
-            <ion-label floating>Remarks</ion-label>
+            <ion-label floating>Doctor Remarks</ion-label>
             <ion-textarea [(ngModel)]="prescription.doctorRemarks" [ngModelOptions]="{standalone: true}"></ion-textarea>
         </ion-item>
     </ion-list>
-    <ion-list>
-        <ion-item  (click)="medicineModal()">
-            &nbsp;Medicine
-            <ion-icon name="arrow-dropright" item-end></ion-icon>
-        </ion-item>
-        <ion-item  (click)="testModal()">
-            &nbsp;Test
-            <ion-icon name="arrow-dropright" item-end></ion-icon>
-        </ion-item>
-        <ion-item  (click)="examinationModal()">
-            &nbsp;Examination
-            <ion-icon name="arrow-dropright" item-end></ion-icon>
-        </ion-item>
-        <ion-item  (click)="vaccinationModal()">
-            &nbsp;Vaccination
-            <ion-icon name="arrow-dropright" item-end></ion-icon>
-        </ion-item>
-    </ion-list>
-
-    <!-- <ion-card>
-        <ion-card-header >
-            Medicines
-        </ion-card-header>
-        <ion-card-content>
-            <button ion-button color="primary" outline (click)="medicineModal()">
-                    <ion-icon name="add-circle"></ion-icon>&nbsp;Medicine</button>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-header >
-            Lab Tests
-        </ion-card-header>
-        <ion-card-content>
-            <button ion-button color="primary" outline (click)="testModal()">
-                    <ion-icon name="add-circle"></ion-icon>&nbsp;Test
-            </button>
-        </ion-card-content>
-    </ion-card> -->
-    <button ion-button block (click)="savePrescription()"><ion-icon name="cloud-upload" ></ion-icon>&nbsp;Save</button>
+    <button ion-button block (click)="savePrescription()"><ion-icon name="cloud-upload" ></ion-icon>&nbsp;Save&Print</button>
 </ion-content>

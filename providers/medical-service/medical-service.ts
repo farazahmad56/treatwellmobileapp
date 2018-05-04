@@ -298,6 +298,7 @@ export class MedicalServiceProvider {
         body.set('doctorId', obj.doctorId);
         body.set('clinicId', obj.clinicId);
         body.set('userName', obj.userName);
+        body.set('prescriptionNo', obj.prescNo);
         if (obj.medicineList.length && obj.medicineList.length > 0) {
             for (var i = 0; i < obj.medicineList.length; i++) {
                 body.set('frequencyIdArr', obj.medicineList[i].frequency.TW_FREQUENCY_ID);
@@ -346,5 +347,11 @@ export class MedicalServiceProvider {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
         return this.http.post(url, body.toString(), options);
+    }
+    getNextPrescriptionNumber(doctorId: string, patientId: string, clinicId: string): Observable<any> {
+        var url = this.baseUrl + 'finance.htm?action=getNextPrescriptionNumber&patientId=' + patientId + '&clinicId=' + clinicId
+            + '&doctorId=' + doctorId;
+        console.log(url);
+        return this.http.get(url)
     }
 }
