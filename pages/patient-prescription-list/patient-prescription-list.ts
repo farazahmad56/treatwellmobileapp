@@ -37,9 +37,9 @@ export class PatientPrescriptionListPage {
         });
     }
     viewDetail(post: any) {
-        this.navCtrl.push(PatientPrescriptionViewPage, {
-            post: post
-        });
+//        this.navCtrl.push(PatientPrescriptionViewPage, {
+//            post: post
+//        });
     }
 
 }

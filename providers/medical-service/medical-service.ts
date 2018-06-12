@@ -95,7 +95,7 @@ export class MedicalServiceProvider {
         let body = new URLSearchParams();
         body.set('doctorName', doctor.doctorName);
         body.set('cellNo', doctor.contactNo);
-        body.set('email', '');
+        body.set('email', doctor.email);
         body.set('totalExperience', doctor.totalExp);
         body.set('newUserName', doctor.loginId);
         body.set('specilityId', doctor.specilityId);

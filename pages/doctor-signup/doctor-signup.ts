@@ -58,6 +58,7 @@ export class DoctorSignupPage {
         this.doctor = this.formBuilder.group({
             doctorName: ['', Validators.required],
             contactNo: ['', Validators.required],
+            email: ['', Validators.email],
             loginId: ['', Validators.required],
             totalExp: ['', Validators.required],
             consultancyFee: ['1000', Validators.required],
@@ -90,12 +91,10 @@ export class DoctorSignupPage {
         });
         loading.present();
         var obj = this.doctor.value;
-        console.log(obj);
         this.medicalServiceProvider.saveDoctor(obj)
             .subscribe(
             data => {
                 loading.dismiss();
-                console.log(data);
                 if (data.result === 'save_success') {
                     toast.present();
                 }
