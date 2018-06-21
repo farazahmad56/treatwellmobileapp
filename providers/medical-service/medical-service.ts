@@ -14,7 +14,7 @@ import {HttpHeaders} from '@angular/common/http';
 @Injectable()
 export class MedicalServiceProvider {
     //private baseUrl = 'http://104.154.204.71/treatwell_mobile/';
-    private baseUrl = 'http://35.198.128.0/ezimedic_mobile/';
+    private baseUrl = 'http://www.ezimedic.com/ezimedic_mobile/';
     //    private baseUrl = 'http://192.168.0.104:8080/treatwell_mobile/';
     constructor(public http: HttpClient) {
 
@@ -91,24 +91,18 @@ export class MedicalServiceProvider {
         return this.http.get(url)
     }
     saveDoctor(doctor: any): Observable<any> {
-        var url = this.baseUrl + 'finance.htm?action=saveDoctor'
+        var url = this.baseUrl + 'finance.htm?action=saveDoctorSignupRequest'
         let body = new URLSearchParams();
         body.set('doctorName', doctor.doctorName);
         body.set('cellNo', doctor.contactNo);
         body.set('email', doctor.email);
         body.set('totalExperience', doctor.totalExp);
-        body.set('newUserName', doctor.loginId);
-        body.set('specilityId', doctor.specilityId);
+        body.set('pmdcNo', doctor.pmdcNo);
+        body.set('doctorType', doctor.specilityId);
         body.set('consultancyFee', doctor.consultancyFee);
         body.set('cityId', doctor.cityId);
-        body.set('clinicId', doctor.clinicName);
-        body.set('clinicTimeFrom', doctor.openTime);
-        body.set('clinicTimeTo', doctor.closeTime);
-        body.set('totalAppointments', doctor.maxAppointment);
-        body.set('doctorType', '2');
-        body.set('addedFrom', 'MOBILE');
-        body.set('clinicName', doctor.newClinicName);
-        body.set('areaId', doctor.areaId);
+        body.set('hospitalAddress', doctor.address);
+        body.set('gender', doctor.gender);
         let options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
@@ -339,10 +333,11 @@ export class MedicalServiceProvider {
         var url = this.baseUrl + 'finance.htm?action=getDoctorsForClinic&clinicId=' + clinicId;
         return this.http.get(url)
     }
-    resetPassword(mobileNo: string): Observable<any> {
+    resetPassword(mobileNo: string, accountType: string): Observable<any> {
         var url = this.baseUrl + 'login.htm?action=resetPassword'
         let body = new URLSearchParams();
         body.set('mobileNo', mobileNo);
+        body.set('accountType', accountType);
         let options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };

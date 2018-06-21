@@ -15,7 +15,7 @@
     </ion-fab>
     <ion-card  *ngIf="posts?.length == 0"><ion-card-content><p ion-text color="danger">No Attachment uploaded yet.</p></ion-card-content></ion-card>
     <ion-card *ngFor="let post of posts;let i = index;" (click)="displayFullImage(post)">
-        <img src="http://35.198.187.239/patientMobileAttachments/{{post.TW_PATIENT_ID}}/{{post.FILE_NME}}" style="height: 200px;" alt="img"   >
+        <img src="http://www.ezimedic.com/patientMobileAttachments/{{post.TW_PATIENT_ID}}/{{post.FILE_NME}}" style="height: 200px;" alt="img"   >
         <div class="card-title">Prescription{{i+1}}</div>
         <div class="card-subtitle">
             {{post.PREPARED_DTE}}

@@ -18,7 +18,7 @@ import {MedicalServiceProvider} from '../../providers/medical-service/medical-se
     templateUrl: 'forgot-password.html',
 })
 export class ForgotPasswordPage {
-    private user: any = {};
+    private user: any = {mobileNo: '', accountType: 'PATIENT'};
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public medicalServiceProvider: MedicalServiceProvider, public loadingCtrl: LoadingController,
         private toastCtrl: ToastController) {
@@ -30,13 +30,13 @@ export class ForgotPasswordPage {
                 content: 'Please wait...'
             });
             loading.present();
-            this.medicalServiceProvider.resetPassword(this.user.mobileNo)
+            this.medicalServiceProvider.resetPassword(this.user.mobileNo, this.user.accountType)
                 .subscribe(
                 data => {
                     loading.dismiss();
                     if (data.result === 'save_success') {
                         let toast = this.toastCtrl.create({
-                            message: 'New password has been sent via sms. If you will not receive any sms within 5 minutes contact system admin.',
+                            message: 'New password has been sent via sms.',
                             duration: 5000,
                             position: 'middle',
                             showCloseButton: true,

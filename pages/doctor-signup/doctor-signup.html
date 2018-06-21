@@ -13,23 +13,30 @@
     <form [formGroup]="doctor" (ngSubmit)="saveDoctorInfo()">
         <ion-list>
             <ion-item>
-                <ion-label floating>Full Name</ion-label>
+                <ion-label floating>Full Name*</ion-label>
                 <ion-input type="text" required formControlName="doctorName"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>Contact No</ion-label>
+                <ion-label floating>Contact No*</ion-label>
                 <ion-input type="number" required formControlName="contactNo"></ion-input>
             </ion-item>
             <ion-item>
+                <ion-label floating>Gender</ion-label>
+                <ion-select formControlName="gender">
+                    <ion-option value="M">Male</ion-option>
+                    <ion-option value="F">Female</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
                 <ion-label floating>Email</ion-label>
-                <ion-input type="email" required formControlName="email"></ion-input>
+                <ion-input type="email"  formControlName="email"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>Login ID</ion-label>
-                <ion-input type="text" formControlName="loginId" required></ion-input>
+                <ion-label floating>PMDC No.</ion-label>
+                <ion-input type="text" formControlName="pmdcNo"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>Total Experience</ion-label>
+                <ion-label floating>Experience (Years)</ion-label>
                 <ion-input type="number" formControlName="totalExp" required></ion-input>
             </ion-item>
             <ion-item>
@@ -42,42 +49,18 @@
                 <ion-label floating>Consultancy Fee</ion-label>
                 <ion-input type="number" formControlName="consultancyFee"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label floating>Clinic</ion-label>
-                <ion-select #CL (ionChange)='showClinicName(CL.value)' required formControlName="clinicName" >
-                    <ion-option *ngFor="let post of clinics" value="{{post.TW_CLINIC_ID}}">{{post.CLINIC_NME}}</ion-option>
-                    <ion-option value="-1">Add New</ion-option>
-                </ion-select>
-            </ion-item>
-            <ion-item *ngIf="showNewClinic">
-                <ion-label floating>Clinic Name</ion-label>
-                <ion-input type="text" formControlName="newClinicName"></ion-input>
-            </ion-item>
-            <ion-item *ngIf="showNewClinic">
-                <ion-label>Clinic City</ion-label>
-                <ion-select #C (ionChange)='getArea(C.value)'  formControlName="cityId">
+
+            <ion-item >
+                <ion-label>City</ion-label>
+                <ion-select formControlName="cityId">
+                    <ion-option value="">Select</ion-option>
                     <ion-option *ngFor="let post of cities" value="{{post.CITY_ID}}">{{post.CITY_NME}}</ion-option>
                 </ion-select>
             </ion-item>
-            <ion-item *ngIf="showNewClinic">
-                <ion-label>Area</ion-label>
-                <ion-select formControlName="areaId">
-                    <ion-option value="">Select</ion-option>
-                    <ion-option *ngFor="let post of area" value="{{post.CITY_AREA_ID}}">{{post.AREA_NME}}</ion-option>
-                </ion-select>
-            </ion-item>
             <ion-item>
-                <ion-label floating>Available From</ion-label>
-                <ion-datetime displayFormat="HH:mm A" formControlName="openTime" pickerFormat="HH mm" [(ngModel)]="event.timeStarts"></ion-datetime>
+                <ion-textarea placeholder="Businesss Address" formControlName="address" required></ion-textarea>
             </ion-item>
-            <ion-item>
-                <ion-label floating>To</ion-label>
-                <ion-datetime displayFormat="HH:mm A" formControlName="closeTime" pickerFormat="HH mm" [(ngModel)]="event.timeEnds"></ion-datetime>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Max Appointment</ion-label>
-                <ion-input type="number" formControlName="maxAppointment"></ion-input>
-            </ion-item>
+
             <button ion-button type="submit" [disabled]="!doctor.valid" block >Save&nbsp;&nbsp;&nbsp;
                 <ion-icon name="cloud-upload" item-end></ion-icon>
             </button>

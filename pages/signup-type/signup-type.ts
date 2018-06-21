@@ -28,7 +28,7 @@ export class SignupTypePage {
         this.navCtrl.push(DoctorSignupPage);
     }
     callHelLine() {
-        this.callNumber.callNumber("03200003511", true)
+        this.callNumber.callNumber("03111444713", true)
             .then(() => console.log('Launched dialer!'))
             .catch(() => console.log('Error launching dialer'));
     }

@@ -105,7 +105,8 @@ export class HomePage {
     }
 
     callHelLine() {
-        this.callNumber.callNumber("03200003511", true)
+        //03200003511
+        this.callNumber.callNumber("03111444713", true)
             .then(() => console.log('Launched dialer!'))
             .catch(() => console.log('Error launching dialer'));
     }

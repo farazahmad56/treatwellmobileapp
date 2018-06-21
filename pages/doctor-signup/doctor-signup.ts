@@ -18,10 +18,6 @@ import {ToastController} from 'ionic-angular';
     templateUrl: 'doctor-signup.html',
 })
 export class DoctorSignupPage {
-    public event = {
-        timeStarts: '09:00',
-        timeEnds: '21:00'
-    }
     private doctor: FormGroup;
     cities: any;
     specilities: any;
@@ -44,40 +40,30 @@ export class DoctorSignupPage {
 
         this.medicalServiceProvider.getDoctorSpecilities()
             .subscribe(
-            data => {this.specilities = data;},
+            data => {loading.dismiss(); this.specilities = data;},
             err => {
                 console.log(err);
             });
-        this.medicalServiceProvider.getClinics("3")
-            .subscribe(
-            data => {loading.dismiss(); this.clinics = data;},
-            err => {
-                console.log(err);
-            });
-        this.getArea('3');
+
+
         this.doctor = this.formBuilder.group({
             doctorName: ['', Validators.required],
             contactNo: ['', Validators.required],
-            email: ['', Validators.email],
-            loginId: ['', Validators.required],
-            totalExp: ['', Validators.required],
-            consultancyFee: ['1000', Validators.required],
+            email: ['', Validators.required],
+            pmdcNo: ['', Validators.required],
+            totalExp: ['1'],
+            consultancyFee: ['1500'],
             specilityId: ['10', Validators.required],
             cityId: ['3'],
-            areaId: [''],
-            newClinicName: [''],
-            clinicName: [''],
-            openTime: [''],
-            closeTime: [''],
-            maxAppointment: ['10'],
-            clinicAddress: ['']
+            address: [''],
+            gender: ['M']
 
         });
     }
 
     saveDoctorInfo() {
         let toast = this.toastCtrl.create({
-            message: 'Success! Your account has been created. Please wait for sms to get password for your login.',
+            message: 'Your information has been saved. Please wait for call from our representative.',
             duration: 4000,
             position: 'middle',
             showCloseButton: true,
@@ -102,24 +88,5 @@ export class DoctorSignupPage {
             err => {
                 console.log(err);
             });
-    }
-    getArea(cityId: string) {
-        let loadingArea = this.loadingCtrl.create({
-            content: 'Please wait...'
-        });
-        loadingArea.present();
-        this.medicalServiceProvider.getAreas(cityId)
-            .subscribe(
-            data => {loadingArea.dismiss(); this.area = data;},
-            err => {
-                console.log(err);
-            });
-    }
-    showClinicName(val: any) {
-        if (val === '-1') {
-            this.showNewClinic = true;
-        } else {
-            this.showNewClinic = false;
-        }
     }
 }

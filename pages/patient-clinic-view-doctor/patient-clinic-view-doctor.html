@@ -14,7 +14,7 @@
     <ion-card *ngFor="let post of doctors">
         <ion-item>
             <ion-thumbnail item-start *ngIf="post.PROFILE_IMAGE !== ''">
-                           <img src="http://35.198.187.239/doctorProfiles/{{post.TW_DOCTOR_ID}}/{{post.PROFILE_IMAGE}}" alt="Image">
+                           <img src="http://www.ezimedic.com/doctorProfiles/{{post.TW_DOCTOR_ID}}/{{post.PROFILE_IMAGE}}" alt="Image">
             </ion-thumbnail>
             <ion-thumbnail item-start *ngIf="post.PROFILE_IMAGE === ''">
                            <img src="assets/imgs/icons8-doctor-male-96.png" alt="Image">
